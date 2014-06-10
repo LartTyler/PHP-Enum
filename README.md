@@ -1,5 +1,4 @@
 ## PHP Enum - What is it?
-=========================
 
 PHP Enum is an as-close-as-possible "port" of Java-esque enums. PHP does not have native support for enums, and using class constants or static variables is often not enough for a particular project. I wrote PHP Enum for two primary reasons:
 
@@ -7,14 +6,12 @@ PHP Enum is an as-close-as-possible "port" of Java-esque enums. PHP does not hav
 2. Public static properties expose more privilege than necessary to the "outside world".
 
 ## But Why??? PHP blah blah blah...
-===================================
 
 If you see this code and immediately think "Why would this be necessary?? PHP has XYZ and isn't mean to work like ABC!!!" then this repo wasn't meant for you, and you should probably move along.
 
-I've seen plenty of people asking "Can I do Java-like enums in PHP" or asking for ways to store object instances as a member of a class, and all the solutions I have seen to date leave much to be desired. Either the recommendation is to use constants (which prevent non-scalar values) or to use public static variables, which (in my opinion) throw the [Principle of Least Privilege](http://en.wikipedia.org/wiki/Principle_of_least_privilege) clean out of the water. PHP Enum seeks to address both of those issues.
+I've seen plenty of people asking "Can I do Java-like enums in PHP" or asking for ways to store object instances as a member of a class, and all the solutions I have seen to date leave much to be desired. Either the recommendation is to use constants (which prevent non-scalar values) or to use public static variables, which (in my opinion) blows the [Principle of Least Privilege](http://en.wikipedia.org/wiki/Principle_of_least_privilege) clean out of the water. PHP Enum seeks to address both of those issues.
 
 ## Usage
-========
 
 Using PHP enum is very simple. Below, you can find a simple `Planet` enum created by extending PHP Enum's base class.
 
