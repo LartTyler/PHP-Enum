@@ -31,9 +31,6 @@
 
 			$name = array_shift($args);
 
-			// if (sizeof($args) === 1 && is_array($args[0]))
-			// 	$args = $args[0];
-
 			$key = get_called_class();
 
 			if (self::isRegistrationHalted($key))
