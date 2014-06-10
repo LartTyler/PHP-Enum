@@ -11,6 +11,10 @@ If you see this code and immediately think "Why would this be necessary?? PHP ha
 
 I've seen plenty of people asking "Can I do Java-like enums in PHP" or asking for ways to store object instances as a member of a class, and all the solutions I have seen to date leave much to be desired. Either the recommendation is to use constants (which prevent non-scalar values) or to use public static variables, which (in my opinion) blows the [Principle of Least Privilege](http://en.wikipedia.org/wiki/Principle_of_least_privilege) clean out of the water. PHP Enum seeks to address both of those issues.
 
+## Requirements
+
+PHP Enum requires PHP 5 >= 5.3.0, as it utilizes the `get_called_class` function which was not introduced until v5.3.0.
+
 ## Usage
 
 Using PHP enum is very simple. Below, you can find a simple `Planet` enum created by extending PHP Enum's base class.
@@ -18,20 +22,20 @@ Using PHP enum is very simple. Below, you can find a simple `Planet` enum create
 ```
   <?php
   	require_once('Enum.php');
-  
+
   	use dbstudios\util\Enum;
-  
+
   	class Planet extends Enum {
   		private $diameter;
-  
+
   		public function __construct($diameter) {
   			$this->diameter = $diameter;
   		}
-  
+
   		public function getDiameter() {
   			return $this->diameter;
   		}
-  
+
   		public static function init() {
   			parent::register('MERCURY', 4880.0);
   			parent::register('VENUS', 12103.6);
@@ -42,11 +46,11 @@ Using PHP enum is very simple. Below, you can find a simple `Planet` enum create
   			parent::register('URANUS', 51118.0);
   			parent::register('NEPTUNE', 49532.0);
   			parent::register('PLUTO', 2274.0);
-  
+
   			parent::stopRegistration();
   		}
   	}
-  
+
   	Planet::init();
   ?>
 ```
