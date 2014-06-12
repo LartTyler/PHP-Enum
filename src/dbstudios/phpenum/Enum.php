@@ -1,5 +1,5 @@
 <?php
-	namespace dbstudios\util;
+	namespace dbstudios\phpenum;
 
 	use \BadMethodCallException;
 	use \Exception;
