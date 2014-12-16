@@ -21,9 +21,7 @@ Using PHP enum is very simple. Below, you can find a simple `Planet` enum create
 
 ```
   <?php
-  	require_once('Enum.php');
-
-  	use dbstudios\util\Enum;
+  	use DaybreakStudios\Enum\Enum;
 
   	class Planet extends Enum {
   		private $diameter;
