@@ -1,5 +1,5 @@
 <?php
-	namespace dbstudios\phpenum;
+	namespace DaybreakStudios\Enum;
 
 	use \BadMethodCallException;
 	use \Exception;
@@ -22,22 +22,24 @@
 		 * Enum::register accepts a variable number of arguments, but should always have at least a single argument which
 		 * names the element being added. Any arguments following the first will be passed, in order, to the constructor
 		 * of whichever enum is being registered to.
+		 *
+		 * @param string $name 		the name of the enum being registered
+		 * @param mixed $ctor,... 	zero or more arguments to be passed to the enum's constructor
 		 */
-		public static function register(/* Varargs */) {
-			$args = func_get_args();
-
-			if (sizeof($args) === 0)
-				throw new Exception('You must specify AT LEAST the enum element\'s name when calling Enum#register.');
-
-			$name = array_shift($args);
-
+		public static function register($name, $ctor = null) {
 			$key = get_called_class();
 
 			if (self::isRegistrationHalted($key))
-				throw new Exception(sprintf('Registration has already been halted for %s; cannot add %s to the enum list.', $key, $name));
+				throw new Exception(sprintf('Registration has been halted for %s; cannot add %s to the enum list.',
+					$key, $name));
 
 			if (!array_key_exists($key, self::$types))
 				self::$types[$key] = array();
+
+			$args = array();
+
+			for ($i = 1; $i < func_num_args(); $i++)
+				$args[] = func_get_arg($i);
 
 			$refl = new ReflectionClass($key);
 			$inst = $refl->newInstanceArgs($args);
@@ -48,6 +50,9 @@
 			self::$types[$key][$name] = $inst;
 		}
 
+		/**
+		 * @internal
+		 */
 		private function __construct($name) {
 			$this->name = $name;
 		}
@@ -77,6 +82,7 @@
 		/**
 		 * Internal use only. Sets the name property of an enum element.
 		 *
+		 * @internal
 		 * @param string $name  the name of the enum element
 		 */
 		private final function setName($name) {
@@ -89,6 +95,7 @@
 		/**
 		 * Internal use only. Sets the ordinal property of an enum element.
 		 *
+		 * @internal
 		 * @param integer $ordinal  the ordinal of the enum element
 		 */
 		private final function setOrdinal($ordinal) {
@@ -101,7 +108,7 @@
 		/**
 		 * Gets an array of all registered elements of the enum.
 		 *
-		 * @return array  an array of all registered enum elements
+		 * @return array  an array containing all elements in the enum
 		 */
 		public static final function values() {
 			$key = get_called_class();
@@ -192,6 +199,8 @@
 
 		/**
 		 * Internal use only. Used to retrieve enum elements.
+		 *
+		 * @internal
 		 */
 		public static final function __callStatic($method, $args) {
 			$key = get_called_class();
