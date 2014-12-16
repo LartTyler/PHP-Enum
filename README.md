@@ -20,37 +20,37 @@ PHP Enum requires PHP 5 >= 5.3.0, as it utilizes the `get_called_class` function
 Using PHP enum is very simple. Below, you can find a simple `Planet` enum created by extending PHP Enum's base class.
 
 ```
-  <?php
-  	use DaybreakStudios\Enum\Enum;
+<?php
+	use DaybreakStudios\Enum\Enum;
 
-  	class Planet extends Enum {
-  		private $diameter;
+	class Planet extends Enum {
+		private $diameter;
 
-  		public function __construct($diameter) {
-  			$this->diameter = $diameter;
-  		}
+		public function __construct($diameter) {
+			$this->diameter = $diameter;
+		}
 
-  		public function getDiameter() {
-  			return $this->diameter;
-  		}
+		public function getDiameter() {
+			return $this->diameter;
+		}
 
-  		public static function init() {
-  			parent::register('MERCURY', 4880.0);
-  			parent::register('VENUS', 12103.6);
-  			parent::register('EARTH', 12756.3);
-  			parent::register('MARS', 6794.0);
-  			parent::register('JUPITER', 142984.0);
-  			parent::register('SATURN', 120536.0);
-  			parent::register('URANUS', 51118.0);
-  			parent::register('NEPTUNE', 49532.0);
-  			parent::register('PLUTO', 2274.0);
+		public static function init() {
+			parent::register('MERCURY', 4880.0);
+			parent::register('VENUS', 12103.6);
+			parent::register('EARTH', 12756.3);
+			parent::register('MARS', 6794.0);
+			parent::register('JUPITER', 142984.0);
+			parent::register('SATURN', 120536.0);
+			parent::register('URANUS', 51118.0);
+			parent::register('NEPTUNE', 49532.0);
+			parent::register('PLUTO', 2274.0);
 
-  			parent::stopRegistration();
-  		}
-  	}
+			parent::stopRegistration();
+		}
+	}
 
-  	Planet::init();
-  ?>
+	Planet::init();
+?>
 ```
 
 There are a few important things to note in the above example.
@@ -70,11 +70,11 @@ Finally, outside of our class, we add a line to call `Planet::init()`. PHP does 
 Now that we have our enum, we can access any of it's values like so:
 
 ```
-  <?php
-    $planet = Planet::EARTH();
+<?php
+  $planet = Planet::EARTH();
 
-    printf('%s has a diameter of %d.', $planet->name(), $planet->getDiameter());
-  ?>
+  printf('%s has a diameter of %d.', $planet->name(), $planet->getDiameter());
+?>
 ```
 
 The above code will yield output similar to "EARTH has a diameter of 12756.3.".
@@ -82,10 +82,10 @@ The above code will yield output similar to "EARTH has a diameter of 12756.3.".
 Additionally, we can iterate over defined elements in an enum.
 
 ```
-  <?php
-    foreach (Planet::values() as $planet)
-      printf('%s has a diameter of %d.<br>', $planet->name(), $planet->getDiameter());
-  ?>
+<?php
+  foreach (Planet::values() as $planet)
+    printf('%s has a diameter of %d.<br>', $planet->name(), $planet->getDiameter());
+?>
 ```
 
 Which will yield output identical to the first example for each planet defined in the `Planet` enum.
