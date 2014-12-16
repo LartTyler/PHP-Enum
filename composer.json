@@ -1,5 +1,6 @@
 {
 	"name": "dbstudios/php-enum",
+	"description": "A PHP enum implementation that allows complex (i.e. non-scalar) values as enums",
 	"authors": [
 		{
 			"name": "Tyler Lartonoix",
