@@ -1,3 +1,5 @@
+**Please note:** This repository has been deprecated in favor of the Enum package implemented in [PHP-DaybreakCommons](https://github.com/LartTyler/PHP-DaybreakCommons).
+
 ## PHP Enum - What is it?
 
 PHP Enum is an as-close-as-possible "port" of Java-esque enums. PHP does not have native support for enums, and using class constants or static variables is often not enough for a particular project. I wrote PHP Enum for two primary reasons:
